@@ -5,4 +5,7 @@
 <loading *ngIf="isLoading$ | async"></loading>
 <p>{{ message$ | async }}</p>
 
+<div *ngIf="buttonClicked$ | async">
+  <p>Butona tıklandı!</p>
+</div>
 <router-outlet />
