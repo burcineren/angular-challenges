@@ -1,6 +1,8 @@
-<button (click)="onStart()">Başlat</button>
-<p *ngIf="(isLoading$ | async)">Yükleniyor...</p>
-<p>{{ (message$ | async) }}</p>
+<div>
+  <button (click)="onStart()">Start</button>
+</div>
 
+<loading *ngIf="isLoading$ | async"></loading>
+<p>{{ message$ | async }}</p>
 
 <router-outlet />

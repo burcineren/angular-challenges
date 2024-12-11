@@ -5,11 +5,12 @@ import { Observable } from 'rxjs';
 import { AppState } from './core/state/app.reducer';
 import { startLoading } from './core/state/app.actions';
 import { CommonModule } from '@angular/common';
+import { LoadingComponent } from './core/layout/loading/loading.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet,CommonModule],
+  imports: [RouterOutlet,CommonModule,LoadingComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
