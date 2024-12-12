@@ -1,0 +1,13 @@
+<input type="text" [(ngModel)]="searchQuery" placeholder="Şehir arayın" />
+<button (click)="search()">Ara</button>
+
+
+
+<ul>
+  <li *ngFor="let city of filteredCities$ | async">
+    {{ city.name }}
+    <loading *ngIf="isLoading$ | async"></loading>
+  </li>
+</ul>
+
+<router-outlet />
