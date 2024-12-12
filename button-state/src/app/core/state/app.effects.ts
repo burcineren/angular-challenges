@@ -12,7 +12,7 @@ export class AppEffects {
     this.actions$.pipe(
       ofType(startLoading),
       switchMap(() =>
-        of(stopLoading(), operationCompleted()).pipe(delay(5000)) 
+        of(stopLoading(), operationCompleted()).pipe(delay(5000))
       )
     )
   );
