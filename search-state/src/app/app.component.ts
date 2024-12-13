@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { Observable } from 'rxjs';
+import { Observable, take } from 'rxjs';
 import { AppState, City } from './core/state/app.reducer';
 import { Store } from '@ngrx/store';
 import { buttonClicked, loadCities, searchCities, startLoading } from './core/state/app.actions';
@@ -17,8 +17,6 @@ import { LoadingComponent } from './core/layout/loading/loading.component';
   styleUrl: './app.component.css'
 })
 export class AppComponent {
-
-
   searchQuery: string = '';
   isLoading$: Observable<boolean>;
   filteredCities$: Observable<{ id: number; name: string }[]>;
@@ -29,6 +27,12 @@ export class AppComponent {
   }
 
   search() {
-    this.store.dispatch(searchCities({ query: this.searchQuery }));
+    this.isLoading$.pipe(take(1)).subscribe(isLoading => {
+      if (isLoading) {
+        alert('Arama işlemi devam ediyor. Lütfen bekleyin.');
+      } else {
+        this.store.dispatch(searchCities({ query: this.searchQuery }));
+      }
+    });
   }
 }

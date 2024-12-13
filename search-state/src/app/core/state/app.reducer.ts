@@ -15,12 +15,17 @@ export interface AppState {
 const initialState: AppState = {
   isLoading: false,
   cities: [
-    { id: 1, name: 'Istanbul' },
+    { id: 1, name: 'İstanbul' },
     { id: 2, name: 'Ankara' },
     { id: 3, name: 'Izmir' },
     { id: 4, name: 'Bursa' }
   ],
-  filteredCities: []
+  filteredCities: [
+    { id: 1, name: 'İstanbul' },
+    { id: 2, name: 'Ankara' },
+    { id: 3, name: 'Izmir' },
+    { id: 4, name: 'Bursa' }
+  ]
 };
 
 export const appReducer = createReducer(
@@ -33,12 +38,15 @@ export const appReducer = createReducer(
     ...state,
     isLoading: false
   })),
-  on(searchCities, (state, { query }) => ({
-    ...state,
-    filteredCities: state.cities.filter(city =>
-      city.name.toLowerCase().includes(query.toLowerCase())
-    )
-  })),
+  on(searchCities, (state, { query }) => {
+    const filtered = state.cities.filter(city =>
+      city.name.toLocaleLowerCase('tr').includes(query.toLocaleLowerCase('tr'))
+    );
+    return {
+      ...state,
+      filteredCities: filtered.length > 0 ? filtered : [] 
+    };
+  }),
   on(updateFilteredCities, (state, { filteredCities }) => ({
     ...state,
     filteredCities

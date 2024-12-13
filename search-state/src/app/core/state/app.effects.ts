@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { delay, tap, } from 'rxjs/operators';
-import { startLoading, stopLoading, operationCompleted, loadCities, searchCities } from './app.actions';
+import { startLoading, stopLoading, searchCities } from './app.actions';
 import { Store } from '@ngrx/store';
 import { AppState } from './app.reducer';
 
