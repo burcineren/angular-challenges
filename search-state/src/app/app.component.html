@@ -6,6 +6,10 @@
     <loading *ngIf="isLoading$ | async"></loading>
   </li>
 </ul>
+<ng-container *ngIf="filteredCities$ | async as filteredCities">
+  <button *ngIf="searchQuery && filteredCities.length > 0" (click)="reset()">Temizle</button>
+</ng-container>
+
 <div *ngIf="(filteredCities$ | async)?.length === 0">
   Sonuç bulunamadı.
 </div>

@@ -3,7 +3,7 @@ import { RouterOutlet } from '@angular/router';
 import { Observable, take } from 'rxjs';
 import { AppState, City } from './core/state/app.reducer';
 import { Store } from '@ngrx/store';
-import { buttonClicked, loadCities, searchCities, startLoading } from './core/state/app.actions';
+import { buttonClicked, loadCities, resetCities, searchCities, startLoading } from './core/state/app.actions';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { selectFilteredCities } from './app.state';
@@ -12,7 +12,7 @@ import { LoadingComponent } from './core/layout/loading/loading.component';
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet,CommonModule,FormsModule,LoadingComponent],
+  imports: [RouterOutlet, CommonModule, FormsModule, LoadingComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
@@ -35,4 +35,9 @@ export class AppComponent {
       }
     });
   }
+  reset() {
+    this.searchQuery = '';
+    this.store.dispatch(resetCities());
+  }
+
 }

@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { delay, tap, } from 'rxjs/operators';
-import { startLoading, stopLoading, searchCities } from './app.actions';
+import { delay, map, mergeMap, tap, } from 'rxjs/operators';
+import { startLoading, stopLoading, searchCities, resetCities } from './app.actions';
 import { Store } from '@ngrx/store';
 import { AppState } from './app.reducer';
+import { of } from 'rxjs';
 
 @Injectable()
 export class AppEffects {
@@ -17,5 +18,15 @@ export class AppEffects {
     ),
     { dispatch: false }
   );
-
+  resetCities$ = createEffect(() =>
+  this.actions$.pipe(
+    ofType(resetCities),
+    mergeMap(() =>
+      of(stopLoading()).pipe(
+        delay(5000),
+        map(() => stopLoading())
+      )
+    )
+  )
+);
 }

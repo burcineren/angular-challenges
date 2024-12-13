@@ -1,5 +1,5 @@
 import { createReducer, on } from '@ngrx/store';
-import { searchCities, startLoading, stopLoading, updateFilteredCities } from './app.actions';
+import { resetCities, searchCities, startLoading, stopLoading, updateFilteredCities } from './app.actions';
 
 export interface City {
   id: number;
@@ -44,11 +44,17 @@ export const appReducer = createReducer(
     );
     return {
       ...state,
-      filteredCities: filtered.length > 0 ? filtered : [] 
+      filteredCities: filtered.length > 0 ? filtered : []
     };
   }),
+  on(resetCities, state => ({
+    ...state,
+    isLoading: true,
+    filteredCities: state.cities
+  })),
   on(updateFilteredCities, (state, { filteredCities }) => ({
     ...state,
     filteredCities
-  }))
+  })),
+
 );

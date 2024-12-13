@@ -17,3 +17,4 @@ export const updateFilteredCities = createAction(
     '[App] Update Filtered Cities',
     props<{ filteredCities: City[] }>() 
   );
+  export const resetCities = createAction('[App] Reset Cities');
