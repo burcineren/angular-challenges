@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { delay, map, mergeMap, tap, } from 'rxjs/operators';
-import { startLoading, stopLoading, searchCities, resetCities } from './app.actions';
 import { Store } from '@ngrx/store';
-import { AppState } from './app.reducer';
 import { of } from 'rxjs';
+import { AppState } from '../loader-state/loader.reducer';
+import { resetCities, searchCities } from './city.actions';
+import { startLoading, stopLoading } from '../loader-state/loader.actions';
 
 @Injectable()
 export class AppEffects {

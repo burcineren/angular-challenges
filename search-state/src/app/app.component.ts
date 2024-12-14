@@ -1,13 +1,13 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { Observable, take } from 'rxjs';
-import { AppState, City } from './core/state/app.reducer';
+import { AppState } from './core/state/loader-state/loader.reducer';
 import { Store } from '@ngrx/store';
-import { buttonClicked, loadCities, resetCities, searchCities, startLoading } from './core/state/app.actions';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { selectFilteredCities } from './app.state';
 import { LoadingComponent } from './core/layout/loading/loading.component';
+import { resetCities, searchCities } from './core/state/city-state/city.actions';
+import { CityState } from './core/state/city-state/city.reducer';
 
 @Component({
   selector: 'app-root',
@@ -21,7 +21,7 @@ export class AppComponent {
   isLoading$: Observable<boolean>;
   filteredCities$: Observable<{ id: number; name: string }[]>;
 
-  constructor(private store: Store<{ app: AppState }>) {
+  constructor(private store: Store<any>) {
     this.isLoading$ = this.store.select(state => state.app.isLoading);
     this.filteredCities$ = this.store.select(state => state.app.filteredCities);
   }

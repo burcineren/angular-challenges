@@ -1,19 +1,17 @@
 import { createReducer, on } from '@ngrx/store';
-import { resetCities, searchCities, startLoading, stopLoading, updateFilteredCities } from './app.actions';
+import { resetCities, searchCities, updateFilteredCities } from './city.actions';
 
 export interface City {
   id: number;
   name: string;
 }
 
-export interface AppState {
-  isLoading: boolean;
+export interface CityState {
   cities: City[];
   filteredCities: City[];
 }
 
-const initialState: AppState = {
-  isLoading: false,
+const initialState: CityState = {
   cities: [
     { id: 1, name: 'İstanbul' },
     { id: 2, name: 'Ankara' },
@@ -30,14 +28,6 @@ const initialState: AppState = {
 
 export const appReducer = createReducer(
   initialState,
-  on(startLoading, state => ({
-    ...state,
-    isLoading: true
-  })),
-  on(stopLoading, state => ({
-    ...state,
-    isLoading: false
-  })),
   on(searchCities, (state, { query }) => {
     const filtered = state.cities.filter(city =>
       city.name.toLocaleLowerCase('tr').includes(query.toLocaleLowerCase('tr'))
@@ -49,7 +39,6 @@ export const appReducer = createReducer(
   }),
   on(resetCities, state => ({
     ...state,
-    isLoading: true,
     filteredCities: state.cities
   })),
   on(updateFilteredCities, (state, { filteredCities }) => ({
