@@ -6,6 +6,7 @@ import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { NzCardModule } from 'ng-zorro-antd/card'; 
 import { FormsModule } from '@angular/forms';
+import { TranslocoModule, TranslocoService } from '@ngneat/transloco';
 @Component({
   selector: 'app-settings',
   standalone: true,
@@ -15,7 +16,8 @@ import { FormsModule } from '@angular/forms';
     NzDropDownModule, 
     NzIconModule,
     NzCardModule,
-    FormsModule
+    FormsModule,
+    TranslocoModule
   ],
   templateUrl: './settings.component.html',
   styleUrl: './settings.component.css'
@@ -26,21 +28,24 @@ export class SettingsComponent {
   language: string = 'en'; // Dil seçeneği
 
 
-  constructor(private message: NzMessageService) {}
+  constructor(private message: NzMessageService,
+    public translocoService: TranslocoService) {}
 
   ngOnInit() {
     // localStorage'dan temayı kontrol et
-    this.isDarkMode = localStorage.getItem('theme') === 'dark';
-    this.updateTheme();
+    this.isDarkMode = !this.isDarkMode;
+    document.body.classList.toggle('dark-mode', this.isDarkMode);
+
+    const msgKey = this.isDarkMode ? 'darkModeActivated' : 'darkModeDeactivated';
+    this.message.success(this.translocoService.translate(msgKey));
   }
 
   toggleDarkMode(): void {
-    this.isDarkMode = !this.isDarkMode; // Durumu tersine çevir
-    localStorage.setItem('theme', this.isDarkMode ? 'dark' : 'light');
-    this.updateTheme();
-    this.message.success(
-      this.isDarkMode ? 'Dark mode activated!' : 'Dark mode deactivated!'
-    );
+    this.isDarkMode = !this.isDarkMode;
+    document.body.classList.toggle('dark-mode', this.isDarkMode);
+
+    const msgKey = this.isDarkMode ? 'darkModeActivated' : 'darkModeDeactivated';
+    this.message.success(this.translocoService.translate(msgKey));
   }
 
   updateTheme() {
@@ -49,5 +54,12 @@ export class SettingsComponent {
     } else {
       document.body.classList.remove('dark-mode');
     }
+  }
+  changeLanguage(lang: string): void {
+    this.translocoService.setActiveLang(lang);
+    localStorage.setItem('lang', lang);
+    this.message.success(
+      this.translocoService.translate('language') + ': ' + lang.toUpperCase()
+    );
   }
 }

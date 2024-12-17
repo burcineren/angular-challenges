@@ -1,24 +1,21 @@
 <nz-card>
-    <h3>Settings</h3>
-    <!-- Dark Mode Toggle -->
-    <div>
-        <label>Dark Mode:</label>
-        <nz-switch
-          [ngModel]="isDarkMode"
-          (ngModelChange)="toggleDarkMode()"
-        ></nz-switch>
-      </div>
+    <h3>{{ 'settings' | transloco }}</h3>
   
-    <!-- Language Dropdown -->
     <div>
-      <button nz-button nz-dropdown>
-        Language: {{ language === 'en' ? 'English' : 'Türkçe' }} <i nz-icon nzType="down"></i>
-      </button>
-      <nz-dropdown-menu>
-        <!-- <ul>
-          <li nz-menu-item (click)="changeLanguage('en')">English</li>
-          <li nz-menu-item (click)="changeLanguage('tr')">Türkçe</li>
-        </ul> -->
-      </nz-dropdown-menu>
+      <label>{{ 'darkMode' | transloco }}:</label>
+      <nz-switch [(ngModel)]="isDarkMode" (ngModelChange)="toggleDarkMode()"></nz-switch>
     </div>
+  
+    <div>
+        <label>{{ 'language' | transloco }}:</label>
+        <button nz-button nz-dropdown [nzDropdownMenu]="menu" nzTrigger="click">
+          {{ language === 'en' ? 'English' : 'Türkçe' }} <i nz-icon nzType="down"></i>
+        </button>
+        <nz-dropdown-menu #menu="nzDropdownMenu">
+          <ul nz-menu>
+            <li nz-menu-item (click)="changeLanguage('en')">English</li>
+            <li nz-menu-item (click)="changeLanguage('tr')">Türkçe</li>
+          </ul>
+        </nz-dropdown-menu>
+      </div>
   </nz-card>
