@@ -1,0 +1,38 @@
+/* Dark Mode */
+.dark-mode {
+    background-color: #121212;
+    color: white;
+  }
+  
+  /* Translogo Effect */
+  .translogo {
+    opacity: 0.5;
+    transition: opacity 0.3s ease;
+  }
+  
+  .nz-card {
+    margin: 20px;
+    padding: 20px;
+  }
+  
+  .nz-switch {
+    margin-bottom: 10px;
+  }
+  
+  .nz-dropdown {
+    margin-top: 10px;
+  }
+  
+  button {
+    margin-top: 10px;
+  }
+  
+  h1 {
+    text-align: center;
+  }
+  button {
+    padding: 10px;
+    margin: 10px auto;
+    display: block;
+  }
+

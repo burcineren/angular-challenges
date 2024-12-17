@@ -1,0 +1,15 @@
+::ng-deep .ant-layout-header {
+  padding: 0 50px;
+  background: #001529;
+
+}
+
+::ng-deep .ant-menu {
+
+  margin-bottom: 1rem;
+}
+
+::ng-deep .ant-menu-item {
+  font-size: 16px;
+  color: white;
+}

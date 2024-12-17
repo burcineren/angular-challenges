@@ -1,19 +1,6 @@
-<input type="text" [(ngModel)]="searchQuery" placeholder="Şehir arayın" />
+<navbar></navbar>
+
 <!-- <button (click)="search()">Ara</button> -->
-<button (click)="search()" >{{  'Ara' }}</button>
-<ul>
-  <li *ngFor="let city of filteredCities$ | async">
-    {{ city.name }}
-    <loading *ngIf="isLoading$ | async"></loading>
-  </li>
-</ul>
-<ng-container *ngIf="filteredCities$ | async as filteredCities">
-  <button *ngIf="filteredCities.length > 0" [style.display]="clearButton ? 'block' : 'none'" (click)="reset()">Temizle</button>
-</ng-container>
-
-<div *ngIf="(filteredCities$ | async)?.length === 0">
-  Sonuç bulunamadı.
-
 
 
 <router-outlet />
