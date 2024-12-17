@@ -16,13 +16,17 @@ const initialState: CityState = {
     { id: 1, name: 'İstanbul' },
     { id: 2, name: 'Ankara' },
     { id: 3, name: 'Izmir' },
-    { id: 4, name: 'Bursa' }
+    { id: 4, name: 'Bursa' },
+    { id: 5, name: 'Antalya' },
+    { id: 6, name: 'Adana' }
   ],
   filteredCities: [
     { id: 1, name: 'İstanbul' },
     { id: 2, name: 'Ankara' },
     { id: 3, name: 'Izmir' },
-    { id: 4, name: 'Bursa' }
+    { id: 4, name: 'Bursa' },
+    { id: 5, name: 'Antalya' },
+    { id: 6, name: 'Adana' }
   ]
 };
 
@@ -34,7 +38,7 @@ export const appReducer = createReducer(
     );
     return {
       ...state,
-      filteredCities: filtered.length > 0 ? filtered : []
+      filteredCities: filtered
     };
   }),
   on(resetCities, state => ({
@@ -43,7 +47,6 @@ export const appReducer = createReducer(
   })),
   on(updateFilteredCities, (state, { filteredCities }) => ({
     ...state,
-    filteredCities
-  })),
-
+    filteredCities: filteredCities.length > 0 ? filteredCities : state.cities
+  }))
 );

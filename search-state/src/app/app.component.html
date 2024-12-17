@@ -1,5 +1,6 @@
 <input type="text" [(ngModel)]="searchQuery" placeholder="Şehir arayın" />
-<button (click)="search()">Ara</button>
+<!-- <button (click)="search()">Ara</button> -->
+<button (click)="search()" >{{  'Ara' }}</button>
 <ul>
   <li *ngFor="let city of filteredCities$ | async">
     {{ city.name }}
@@ -7,11 +8,12 @@
   </li>
 </ul>
 <ng-container *ngIf="filteredCities$ | async as filteredCities">
-  <button *ngIf="searchQuery && filteredCities.length > 0" (click)="reset()">Temizle</button>
+  <button *ngIf="filteredCities.length > 0" [style.display]="clearButton ? 'block' : 'none'" (click)="reset()">Temizle</button>
 </ng-container>
 
 <div *ngIf="(filteredCities$ | async)?.length === 0">
   Sonuç bulunamadı.
-</div>
+
+
 
 <router-outlet />

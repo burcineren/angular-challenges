@@ -8,6 +8,7 @@ import { FormsModule } from '@angular/forms';
 import { LoadingComponent } from './core/layout/loading/loading.component';
 import { resetCities, searchCities } from './core/state/city-state/city.actions';
 import { CityState } from './core/state/city-state/city.reducer';
+import { startLoading } from './core/state/loader-state/loader.actions';
 
 @Component({
   selector: 'app-root',
@@ -19,11 +20,17 @@ import { CityState } from './core/state/city-state/city.reducer';
 export class AppComponent {
   searchQuery: string = '';
   isLoading$: Observable<boolean>;
+  message$: Observable<string>;
+  clearButton:boolean = false;
+  loadingMessage:any= '';
+
   filteredCities$: Observable<{ id: number; name: string }[]>;
 
-  constructor(private store: Store<any>) {
+  constructor(private store: Store<{ app: AppState; city: CityState }>) {
     this.isLoading$ = this.store.select(state => state.app.isLoading);
-    this.filteredCities$ = this.store.select(state => state.app.filteredCities);
+    this.message$ = this.store.select(state => state.app.message);
+    this.filteredCities$ = this.store.select(state => state.city.filteredCities);
+  
   }
 
   search() {
@@ -31,10 +38,17 @@ export class AppComponent {
       if (isLoading) {
         alert('Arama işlemi devam ediyor. Lütfen bekleyin.');
       } else {
-        this.store.dispatch(searchCities({ query: this.searchQuery }));
+        if (this.searchQuery.trim()) {
+          this.store.dispatch(startLoading());
+          this.clearButton = true;
+          this.store.dispatch(searchCities({ query: this.searchQuery }));
+        } else {
+          alert('Arama kutusu boş olamaz!');
+        }
       }
     });
   }
+  
   reset() {
     this.searchQuery = '';
     this.store.dispatch(resetCities());
