@@ -9,11 +9,12 @@ import { Store } from '@ngrx/store';
 import { CityState } from '../../core/state/city-state/city.reducer';
 import { startLoading } from '../../core/state/loader-state/loader.actions';
 import { resetCities, searchCities } from '../../core/state/city-state/city.actions';
+import { TranslocoModule } from '@ngneat/transloco';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [ CommonModule, FormsModule, LoadingComponent, NavbarComponent],
+  imports: [ CommonModule, FormsModule, LoadingComponent,TranslocoModule],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })

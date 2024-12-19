@@ -1,0 +1,33 @@
+@import "ng-zorro-antd/ng-zorro-antd.min.css";
+
+body {
+  background-color: #ffffff;
+  color: #000000;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+body.dark-mode {
+  background-color: #2b2a2a;
+  color: #e0e0e0;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  background: #2b2a2a;
+  label {
+    color: #e0e0e0;
+  }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    margin-top: 0;
+    color: #e0e0e0 !important;
+    font-weight: 500;
+  }
+  .ant-card-body {
+    background: #2b2a2a;
+  }
+}
+.ant-card-body {
+  background: #ffffff;
+}
