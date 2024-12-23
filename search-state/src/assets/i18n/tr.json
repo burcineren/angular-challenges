@@ -1,7 +1,10 @@
 {
-    "settings": "Ayarlar",
-    "darkMode": "Karanlık Mod",
-    "language": "Dil",
-    "darkModeActivated": "Karanlık mod etkinleştirildi!",
-    "darkModeDeactivated": "Karanlık mod devre dışı bırakıldı!"
-  }
+  "settings": "Ayarlar",
+  "darkMode": "Karanlık Mod",
+  "home": "Anasayfa",
+  "search": "Ara",
+  "clean": "Temizle",
+  "language": "Dil",
+  "darkModeActivated": "Karanlık mod etkinleştirildi!",
+  "darkModeDeactivated": "Karanlık mod devre dışı bırakıldı!"
+}

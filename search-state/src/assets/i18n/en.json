@@ -1,7 +1,10 @@
 {
-    "settings": "Settings",
-    "darkMode": "Dark Mode",
-    "language": "Language",
-    "darkModeActivated": "Dark mode activated!",
-    "darkModeDeactivated": "Dark mode deactivated!"
-  }
+  "settings": "Settings",
+  "home": "Home",
+  "search": "Search",
+  "clean": "Clean",
+  "darkMode": "Dark Mode",
+  "language": "Language",
+  "darkModeActivated": "Dark mode activated!",
+  "darkModeDeactivated": "Dark mode deactivated!"
+}
