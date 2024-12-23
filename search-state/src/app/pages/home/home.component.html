@@ -1,5 +1,5 @@
 <input nz-input placeholder="Şehir arayın" [(ngModel)]="searchQuery" type="text" />
-<button (click)="search()" >{{  'Ara' | transloco}}</button>
+<button (click)="search()" >{{  'search' | transloco}}</button>
 <ul>
   <li *ngFor="let city of filteredCities$ | async">
     {{ city.name }}
@@ -7,7 +7,7 @@
   </li>
 </ul>
 <ng-container *ngIf="filteredCities$ | async as filteredCities">
-  <button *ngIf="filteredCities.length > 0" [style.display]="clearButton ? 'block' : 'none'" (click)="reset()">{{  'Temizle' | transloco}}</button>
+  <button *ngIf="filteredCities.length > 0" [style.display]="clearButton ? 'block' : 'none'" (click)="reset()">{{  'clean' | transloco}}</button>
 </ng-container>
 
 <div *ngIf="(filteredCities$ | async)?.length === 0">

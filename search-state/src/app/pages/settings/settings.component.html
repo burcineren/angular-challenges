@@ -1,21 +1,26 @@
 <nz-card>
-    <h3>{{ 'settings' | transloco }}</h3>
-  
-    <div>
-      <label>{{ 'darkMode' | transloco }}:</label>
-      <nz-switch [(ngModel)]="isDarkMode" (ngModelChange)="toggleDarkMode()"></nz-switch>
-    </div>
-  
-    <div>
-        <label>{{ 'language' | transloco }}:</label>
-        <button nz-button nz-dropdown [nzDropdownMenu]="menu" nzTrigger="click">
-          {{ language === 'en' ? 'English' : 'Türkçe' }} <i nz-icon nzType="down"></i>
-        </button>
-        <nz-dropdown-menu #menu="nzDropdownMenu">
-          <ul nz-menu>
-            <li nz-menu-item (click)="changeLanguage('en')">English</li>
-            <li nz-menu-item (click)="changeLanguage('tr')">Türkçe</li>
-          </ul>
-        </nz-dropdown-menu>
-      </div>
-  </nz-card>
+  <h3>{{ "settings" | transloco }}</h3>
+
+  <div>
+    <label>{{ "darkMode" | transloco }}:</label>
+    <nz-switch
+      [ngModel]="isDarkMode$ | async"
+      (click)="toggleDarkMode()"
+    ></nz-switch>
+    <p>{{ (isDarkMode$ | async) ? "Dark Mode is ON" : "Dark Mode is OFF" }}</p>
+  </div>
+
+  <div>
+    <label>{{ "language" | transloco }}:</label>
+    <button nz-button nz-dropdown [nzDropdownMenu]="menu" nzTrigger="click">
+      {{ (language$ | async) === "en" ? "English" : "Türkçe" }}
+      <i nz-icon nzType="down"></i>
+    </button>
+    <nz-dropdown-menu #menu="nzDropdownMenu">
+      <ul nz-menu>
+        <li nz-menu-item (click)="changeLanguage('en')">English</li>
+        <li nz-menu-item (click)="changeLanguage('tr')">Türkçe</li>
+      </ul>
+    </nz-dropdown-menu>
+  </div>
+</nz-card>
